@@ -2,13 +2,19 @@ package me.juliasson.flixter.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+@Parcel
 public class Movie {
     //instance values from API
-    private String title;
-    private String synopsis;
-    private String posterPath; //only the path, not full URL
-    private String backdropPath;
+    String title;
+    String synopsis;
+    String posterPath; //only the path, not full URL
+    String backdropPath;
+    Double voteAverage;
+
+    //default constructor, empty
+    public Movie() {}
 
     //initialize from JSON data
     public Movie(JSONObject object) throws JSONException {
@@ -16,6 +22,7 @@ public class Movie {
         synopsis = object.getString("overview");
         posterPath = object.getString("poster_path");
         backdropPath = object.getString("backdrop_path");
+        voteAverage = object.getDouble("vote_average");
     }
 
     //getters
@@ -34,5 +41,9 @@ public class Movie {
 
     public String getBackdropPath() {
         return backdropPath;
+    }
+
+    public Double getVoteAverage() {
+        return voteAverage;
     }
 }

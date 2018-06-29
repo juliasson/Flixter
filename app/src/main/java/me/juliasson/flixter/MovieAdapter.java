@@ -1,6 +1,7 @@
 package me.juliasson.flixter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -102,7 +105,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     //create the viewHolder as a static inner class
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //track view objects
         ImageView ivPosterImage;
@@ -117,6 +120,24 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             ivBackdropImage = itemView.findViewById(R.id.ivBackdropImage);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
+            itemView.setOnClickListener(this);
+        }
+
+        //moving to a more detailed activity when movie is clicked
+        @Override
+        public void onClick(View view) {
+            //get position & ensure validity
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                //get the movie at the valid position
+                Movie movie = movies.get(position);
+                //creating an intent to display MovieDetailsActivity
+                Intent intent = new Intent(context, MovieDetailsActivity.class);
+                //passing the movie as an extra serialized via Parcel
+                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+                //show the activity
+                context.startActivity(intent);
+            }
         }
     }
 }
