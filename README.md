@@ -4,7 +4,7 @@
 
 Submitted by: **Julia Son**
 
-Time spent: **6** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
@@ -20,7 +20,7 @@ The following **optional** features are implemented:
 * [X] User can **select a movie and view more details for the movie**
 * [X] Improved **UI through styling and coloring**
 * [ ] **Applied the Butterknife annotation library**
-* [ ] **Allow posts to be played in full-screen using the YoutubePlayerView**
+* [?] **Allow posts to be played in full-screen using the YoutubePlayerView**
 
 The following **additional** features are implemented:
 
