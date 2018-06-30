@@ -12,6 +12,8 @@ public class Movie {
     String posterPath; //only the path, not full URL
     String backdropPath;
     Double voteAverage;
+    Integer id;
+    String key;
 
     //default constructor, empty
     public Movie() {}
@@ -23,6 +25,8 @@ public class Movie {
         posterPath = object.getString("poster_path");
         backdropPath = object.getString("backdrop_path");
         voteAverage = object.getDouble("vote_average");
+        id = object.getInt("id");
+        key = String.valueOf(object.getJSONArray("results").get(3));
     }
 
     //getters
@@ -46,4 +50,10 @@ public class Movie {
     public Double getVoteAverage() {
         return voteAverage;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getKey() { return key; }
 }
